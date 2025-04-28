@@ -8,11 +8,11 @@ spring:
   application:
     name: PafBackend
   profiles:
-    active: dev
+    active: dev   # default active profile is 'dev' unless overridden
   data:
     mongodb:
-      uri: mongodb+srv://izu99:TDsFSwDtJ7B1n8m5@cluster0.ghixis6.mongodb.net/oauthdb?retryWrites=true&w=majority&appName=Cluster0&ssl=true&tlsAllowInvalidCertificates=true
-      database: ${MONGODB_DB}
+      uri: ${MONGODB_URI}
+      database: ${MONGODB_DATABASE}
   security:
     oauth2:
       client:
