@@ -19,11 +19,11 @@ const LeftMenu = () => {
       </div>
       <ul className="left-menu-list">
         {[
-          "Posts",
-          "Skill Plans",
-          "Learning Tracking",
+          "Explore",
+          "Cooking Goals",
+          "Progress Tracker",
           "Friends",
-          "Notifications",
+          "Alerts",
         ].map((item, index) => (
           <li
             key={index}
