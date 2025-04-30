@@ -1,11 +1,4 @@
-/* navbar.css - Updated color theme for CookMate with 60-30-10 color rule */
-:root {
-  --primary-color: #FFF8F0;
-  --secondary-color: #E86A57;
-  --accent-color: #FFB400;
-  --text-dark: #333333;
-  --text-light: #666666;
-}
+/* navbar.css - Redesigned for CookMate with 60-30-10 color rule */
 
 .navbar {
   position: fixed;
@@ -19,7 +12,7 @@
 }
 
 .navbar__scrolled {
-  background-color: var(--primary-color);
+  background-color: #FFF8F0;
   box-shadow: 0 4px 20px rgba(232, 106, 87, 0.1);
   padding: 12px 0;
 }
@@ -55,13 +48,13 @@
 .logo__text {
   font-weight: 700;
   font-size: 1.5rem;
-  color: var(--primary-color);
+  color: #FFF8F0;
   transition: all 0.3s ease;
   letter-spacing: -0.5px;
 }
 
 .navbar__scrolled .logo__text {
-  color: var(--secondary-color);
+  color: #E86A57;
 }
 
 .nav__logo img {
@@ -93,7 +86,7 @@
   border-radius: 50px;
   border: none;
   background-color: rgba(255, 248, 240, 0.2);
-  color: var(--primary-color);
+  color: #FFF8F0;
   font-size: 0.95rem;
   transition: all 0.3s ease;
   backdrop-filter: blur(5px);
@@ -101,7 +94,7 @@
 
 .navbar__scrolled .nav__search input {
   background-color: rgba(232, 106, 87, 0.08);
-  color: var(--secondary-color);
+  color: #E86A57;
 }
 
 .nav__search input::placeholder {
@@ -119,7 +112,7 @@
 }
 
 .navbar__scrolled .nav__search input:focus {
-  background-color: var(--primary-color);
+  background-color: #FFF8F0;
   box-shadow: 0 0 0 2px rgba(232, 106, 87, 0.2);
 }
 
@@ -130,7 +123,7 @@
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: var(--primary-color);
+  color: #FFF8F0;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -140,7 +133,7 @@
 }
 
 .navbar__scrolled .search__button {
-  color: var(--secondary-color);
+  color: #E86A57;
 }
 
 .nav__menu__btn {
@@ -163,7 +156,7 @@
   position: absolute;
   height: 3px;
   width: 100%;
-  background: var(--primary-color);
+  background: #FFF8F0;
   border-radius: 10px;
   opacity: 1;
   left: 0;
@@ -172,7 +165,7 @@
 }
 
 .navbar__scrolled .menu__icon span {
-  background: var(--secondary-color);
+  background: #E86A57;
 }
 
 .menu__icon span:nth-child(1) {
@@ -217,7 +210,7 @@
 }
 
 .nav__link {
-  color: var(--primary-color);
+  color: #FFF8F0;
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
@@ -227,7 +220,7 @@
 }
 
 .navbar__scrolled .nav__link {
-  color: var(--text-dark);
+  color: #333;
 }
 
 .nav__link::after {
@@ -237,12 +230,12 @@
   height: 2px;
   bottom: -2px;
   left: 0;
-  background-color: var(--accent-color);
+  background-color: #FFB400;
   transition: width 0.3s ease;
 }
 
 .nav__link:hover {
-  color: var(--accent-color);
+  color: #FFB400;
 }
 
 .nav__link:hover::after {
@@ -250,8 +243,8 @@
 }
 
 .nav__link--cta {
-  background: var(--secondary-color);
-  color: var(--primary-color);
+  background: #E86A57;
+  color: #FFF8F0;
   padding: 12px 24px;
   border-radius: 50px;
   box-shadow: 0 4px 15px rgba(232, 106, 87, 0.3);
@@ -260,8 +253,8 @@
 }
 
 .nav__link--cta:hover {
-  background: var(--accent-color);
-  color: var(--primary-color);
+  background: #FFB400;
+  color: #FFF8F0;
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(255, 180, 0, 0.4);
 }
@@ -305,7 +298,7 @@
   }
   
   .navbar__scrolled .nav__links {
-    background-color: var(--primary-color);
+    background-color: #FFF8F0;
   }
   
   .nav__links.open {
