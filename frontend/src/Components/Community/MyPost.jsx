@@ -19,7 +19,7 @@ const MyPost = () => {
           <i className="fas fa-edit"></i>
         </div>
         <div className="post-text">
-          <div className="post-description">Create a new post to share with the community</div>
+          <div className="post-description">+ Add a new post to share with the community</div>
         </div>
       </div>
       <div className="hover-overlay"></div>
