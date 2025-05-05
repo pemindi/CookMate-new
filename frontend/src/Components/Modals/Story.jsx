@@ -6,6 +6,7 @@ import state from "../../Utils/Store";
 import UploadFileService from "../../Services/UploadFileService";
 import StoryService from "../../Services/StoryService";
 
+
 const uploadService = new UploadFileService();
 
 const Story = () => {
@@ -231,5 +232,4 @@ const Story = () => {
     </Modal>
   );
 };
-
 export default Story;

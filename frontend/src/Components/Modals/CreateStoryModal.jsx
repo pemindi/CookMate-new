@@ -103,7 +103,7 @@ const CreateStoryModal = () => {
           label="Title" 
           rules={[{ required: true, message: 'Please enter a title' }]}
         >
-          <Input placeholder="Enter story title" />
+          <Input placeholder="Enter a title for the story" />
         </Form.Item>
         
         <Form.Item
@@ -112,7 +112,7 @@ const CreateStoryModal = () => {
           rules={[{ required: true, message: 'Please enter a description' }]}
         >
           <Input.TextArea 
-            placeholder="Describe your  story" 
+            placeholder="Enter a description for your story" 
             rows={4}
           />
         </Form.Item>
@@ -150,7 +150,7 @@ const CreateStoryModal = () => {
               >
                 <div className="upload-placeholder">
                   <PictureOutlined style={{ fontSize: "32px", opacity: 0.5 }} />
-                  <p>Click to upload an image</p>
+                  <p>Click here to upload an image</p>
                 </div>
               </Upload>
             )}
