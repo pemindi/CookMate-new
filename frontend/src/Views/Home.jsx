@@ -30,8 +30,8 @@ const Home = () => {
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
       const value = key.includes('token') 
-        ? 'EXISTS (not shown for security)' 
-        : localStorage.getItem(key);
+         ? 'EXISTS (not shown for security)' 
+         : localStorage.getItem(key);
       console.log(`[Home] ${key}: ${value}`);
     }
     
