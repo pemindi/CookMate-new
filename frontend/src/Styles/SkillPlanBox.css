@@ -1,69 +1,211 @@
-/* CreateSkillPlanBox.css */
-.skill-plan-box {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-    padding: 16px;
-    margin-bottom: 20px;
-    transition: all 0.2s ease;
-    border-left: 4px solid #1890ff;
-    cursor: pointer;
+/* CreateSkillPlanBox.css - Modern asymmetrical design with softer textures */
+
+.create-skill-plan-box {
+  background: #FFF8F0;
+  border-radius: 24px;
+  box-shadow: 0 8px 24px rgba(232, 106, 87, 0.1);
+  padding: 24px;
+  margin-bottom: 32px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-top: 5px solid #E86A57;
+  font-family: 'Nunito', 'Poppins', sans-serif;
+}
+
+.create-skill-plan-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e86a57' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.create-skill-plan-box:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(232, 106, 87, 0.15);
+  background: linear-gradient(135deg, #FFF8F0 0%, rgba(255, 248, 240, 0.9) 100%);
+}
+
+.create-skill-plan-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.user-avatar-wrapper {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(232, 106, 87, 0.2);
+  border: 3px solid #fff;
+  transition: all 0.3s ease;
+}
+
+.avatar-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #E86A57, #FFB400);
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.create-skill-plan-box:hover .user-avatar {
+  transform: scale(1.05);
+}
+
+.create-skill-plan-box:hover .avatar-glow {
+  opacity: 0.6;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+}
+
+.skill-input-wrapper {
+  flex: 1;
+  position: relative;
+}
+
+.skill-input {
+  width: 100%;
+  padding: 16px 50px 16px 22px;
+  border: 2px solid rgba(232, 106, 87, 0.15);
+  border-radius: 50px;
+  background-color: #fff;
+  color: #333;
+  font-size: 15px;
+  font-weight: 500;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(232, 106, 87, 0.05);
+}
+
+.create-skill-plan-box:hover .skill-input {
+  border-color: rgba(232, 106, 87, 0.3);
+  box-shadow: 0 6px 15px rgba(232, 106, 87, 0.1);
+}
+
+.skill-input::placeholder {
+  color: #999;
+  font-weight: 400;
+}
+
+.plus-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #E86A57;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.create-skill-plan-box:hover .plus-icon {
+  transform: translateY(-50%) rotate(90deg);
+  color: #FFB400;
+  opacity: 1;
+}
+
+.create-skill-plan-decoration {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.decoration-circle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+  transition: all 0.5s ease;
+}
+
+.decoration-circle-1 {
+  top: -50px;
+  right: -30px;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #E86A57, #FFB400);
+}
+
+.decoration-circle-2 {
+  bottom: -60px;
+  left: 40%;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #FFB400, #E86A57);
+}
+
+.create-skill-plan-box:hover .decoration-circle-1 {
+  transform: scale(1.2);
+  opacity: 0.15;
+}
+
+.create-skill-plan-box:hover .decoration-circle-2 {
+  transform: translateY(-15px);
+  opacity: 0.2;
+}
+
+/* For smaller screens */
+@media (max-width: 576px) {
+  .create-skill-plan-box {
+    padding: 18px;
+    border-radius: 18px;
   }
   
-  .skill-plan-box:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
-  }
-  
-  .post_top {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  
-  .user-image {
+  .user-avatar-wrapper {
     width: 40px;
     height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
+  }
+  
+  .user-avatar {
+    width: 40px;
+    height: 40px;
   }
   
   .skill-input {
-    flex: 1;
-    padding: 10px 14px;
-    border: 1px solid #e8e8e8;
-    border-radius: 20px;
-    background-color: #f5f5f5;
-    color: #595959;
+    padding: 12px 40px 12px 16px;
     font-size: 14px;
-    outline: none;
-    transition: all 0.3s ease;
   }
   
-  .skill-input:focus, 
-  .skill-input:hover {
-    background-color: #fff;
-    border-color: #d9d9d9;
-    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.1);
+  .plus-icon {
+    right: 12px;
+    size: 18px;
   }
-  
-  .skill-input::placeholder {
-    color: #8c8c8c;
-  }
-  
-  /* For smaller screens */
-  @media (max-width: 576px) {
-    .skill-plan-box {
-      padding: 12px;
-    }
-    
-    .user-image {
-      width: 32px;
-      height: 32px;
-    }
-    
-    .skill-input {
-      padding: 8px 12px;
-      font-size: 13px;
-    }
-  }
+}
