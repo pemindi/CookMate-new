@@ -1,4 +1,5 @@
-/* navbar.css */
+/* NavbarStyles.css - Modern styling for the cooking website navigation */
+
 .navbar {
   position: fixed;
   top: 0;
@@ -7,26 +8,14 @@
   background-color: transparent;
   padding: 20px 0;
   z-index: 1000;
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
 }
 
 .navbar__scrolled {
-  background-color: #ede7d9;
-  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 248, 240, 0.95);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   padding: 12px 0;
-}
-
-.navbar__scrolled .nav__link {
-  color: #d35400;
-}
-
-.navbar__scrolled .nav__link:hover {
-  color: #e67e22;
-}
-
-.navbar__scrolled .nav__link--cta {
-  background: linear-gradient(135deg, #e67e22, #d35400);
-  color: #fff;
+  backdrop-filter: blur(10px);
 }
 
 .nav__container {
@@ -38,6 +27,7 @@
   align-items: center;
 }
 
+/* Logo styling */
 .nav__header {
   display: flex;
   align-items: center;
@@ -55,26 +45,37 @@
   gap: 10px;
 }
 
+.logo__icon {
+  color: #FFB400;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
 .logo__text {
   font-weight: 700;
-  font-size: 1.3rem;
-  color: #fff;
+  font-size: 1.5rem;
+  color: #E86A57;
   transition: all 0.3s ease;
+  position: relative;
+  margin: 0;
 }
 
-.navbar__scrolled .logo__text {
-  color: #d35400;
+.logo__text span {
+  color: #FFB400;
 }
 
-.nav__logo img {
-  height: 36px;
-  transition: all 0.3s ease;
+.logo__text::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #FFB400;
+  bottom: 5px;
+  right: -10px;
 }
 
-.navbar__scrolled .nav__logo img {
-  height: 32px;
-}
-
+/* Search box styling */
 .nav__search {
   position: relative;
   width: 300px;
@@ -90,35 +91,21 @@
   padding: 12px 20px;
   border-radius: 50px;
   border: none;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  background-color: rgba(255, 248, 240, 0.9);
+  color: #555;
   font-size: 0.9rem;
   transition: all 0.3s ease;
-  backdrop-filter: blur(5px);
-}
-
-.navbar__scrolled .nav__search input {
-  background-color: #f5f5f5;
-  color: #d35400;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .nav__search input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.navbar__scrolled .nav__search input::placeholder {
-  color: #e67e22;
+  color: #aaa;
 }
 
 .nav__search input:focus {
   outline: none;
-  background-color: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
-}
-
-.navbar__scrolled .nav__search input:focus {
   background-color: #fff;
-  box-shadow: 0 0 0 2px rgba(211, 84, 0, 0.2);
+  box-shadow: 0 0 0 2px rgba(232, 106, 87, 0.2);
 }
 
 .search__button {
@@ -128,14 +115,16 @@
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: #fff;
+  color: #E86A57;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.navbar__scrolled .search__button {
-  color: #d35400;
+.search__button:hover {
+  transform: translateY(-50%) scale(1.1);
 }
 
+/* Mobile menu button */
 .nav__menu__btn {
   display: none;
   background: none;
@@ -155,16 +144,12 @@
   position: absolute;
   height: 3px;
   width: 100%;
-  background: #fff;
+  background: #E86A57;
   border-radius: 3px;
   opacity: 1;
   left: 0;
   transform: rotate(0deg);
   transition: 0.25s ease-in-out;
-}
-
-.navbar__scrolled .menu__icon span {
-  background: #d35400;
 }
 
 .menu__icon span:nth-child(1) {
@@ -173,6 +158,7 @@
 
 .menu__icon span:nth-child(2) {
   top: 10px;
+  width: 80%;
 }
 
 .menu__icon span:nth-child(3) {
@@ -194,6 +180,7 @@
   transform: rotate(-135deg);
 }
 
+/* Navigation links */
 .nav__links {
   display: flex;
   gap: 30px;
@@ -203,8 +190,12 @@
   padding: 0;
 }
 
+.nav__item {
+  position: relative;
+}
+
 .nav__link {
-  color: #fff;
+  color: #555;
   text-decoration: none;
   font-size: 1rem;
   font-weight: 500;
@@ -220,36 +211,66 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #fff;
+  background-color: #E86A57;
   transition: width 0.3s ease;
 }
 
-.navbar__scrolled .nav__link::after {
-  background-color: #e67e22;
+.nav__link:hover {
+  color: #E86A57;
 }
 
 .nav__link:hover::after {
   width: 100%;
 }
 
+/* CTA button */
 .nav__link--cta {
-  background: #fff;
-  color: #d35400;
-  padding: 10px 20px;
+  background: linear-gradient(135deg, #E86A57, #e05845);
+  color: #fff;
+  padding: 12px 25px;
   border-radius: 50px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(232, 106, 87, 0.3);
   transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .nav__link--cta:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 25px rgba(232, 106, 87, 0.4);
+  background: linear-gradient(135deg, #e05845, #d94c39);
+  color: #fff;
 }
 
 .nav__link--cta:hover::after {
   display: none;
 }
 
+/* User avatar for logged in users */
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #FFB400;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-avatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive styles */
 @media screen and (max-width: 992px) {
   .nav__search {
     width: 200px;
@@ -281,6 +302,9 @@
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.5s ease;
+    background-color: #FFF8F0;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   }
   
   .nav__links.open {
@@ -292,15 +316,12 @@
     width: 100%;
     text-align: center;
     padding: 15px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .navbar__scrolled .nav__item {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(232, 106, 87, 0.1);
   }
   
   .nav__item:last-child {
     border-bottom: none;
+    padding-bottom: 20px;
   }
   
   .nav__link::after {
@@ -308,7 +329,7 @@
   }
   
   .nav__item--cta {
-    margin-top: 10px;
+    margin: 15px auto;
   }
   
   .nav__link--cta {
@@ -325,5 +346,8 @@
   .nav__header {
     justify-content: space-between;
   }
+  
+  .logo__text {
+    font-size: 1.3rem;
+  }
 }
-
