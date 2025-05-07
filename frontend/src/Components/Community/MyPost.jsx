@@ -1,7 +1,7 @@
 import React from "react";
 import { useSnapshot } from "valtio";
 import state from "../../Utils/Store";
-// import "../Styles/MyPost.css"; (Your CSS file should be applied)
+import "../../Styles/MyPost.css" ;// (Your CSS file should be applied)
 
 const MyPost = () => {
   const snap = useSnapshot(state);
