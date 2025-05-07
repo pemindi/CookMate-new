@@ -2,7 +2,7 @@ package com.example.pafbackend.config;
 
 import com.example.pafbackend.models.User;
 import com.example.pafbackend.dto.TokenDTO;
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,7 +19,7 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+//import org.springframework.stereotype.Service;
 
 @Component
 public class TokenGenerator {

@@ -4,7 +4,7 @@ import com.example.pafbackend.config.TokenGenerator;
 import com.example.pafbackend.dto.LoginDTO;
 import com.example.pafbackend.dto.SignupDTO;
 import com.example.pafbackend.dto.TokenDTO;
-import com.example.pafbackend.dto.UserDTO;
+//import com.example.pafbackend.dto.UserDTO;
 import com.example.pafbackend.models.User;
 import com.example.pafbackend.services.CustomOAuth2User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +54,7 @@ public class AuthController {
             userDetailsManager.createUser(user);
 
             Authentication authentication = UsernamePasswordAuthenticationToken.authenticated(
-                    user, signupDTO.getPassword(), Collections.EMPTY_LIST);
+                    user, signupDTO.getPassword(), Collections.emptyList());
             return ResponseEntity.ok(tokenGenerator.createToken(authentication));
         } catch (UsernameNotFoundException ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Error: Username not found!");
@@ -139,7 +139,7 @@ public class AuthController {
         
         try {
             Authentication authentication = UsernamePasswordAuthenticationToken.authenticated(
-                    user, "", Collections.EMPTY_LIST);
+                    user, "", Collections.emptyList());
             TokenDTO tokenDTO = tokenGenerator.createToken(authentication);
             return ResponseEntity.ok(tokenDTO);
         } catch (Exception ex) {
