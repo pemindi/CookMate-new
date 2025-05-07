@@ -1,3 +1,208 @@
+/* MyPost.css - Modern asymmetrical design with softer textures */
+
+.mypost-container {
+    position: relative;
+    background-color: #FFF8F0;
+    border-radius: 16px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Nunito', 'Poppins', sans-serif;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .mypost-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(232, 106, 87, 0.2);
+  }
+  
+  /* Background elements */
+  .mypost-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+  
+  .mypost-circle {
+    position: absolute;
+    border-radius: 50%;
+  }
+  
+  .mypost-circle.circle-1 {
+    width: 150px;
+    height: 150px;
+    top: -60px;
+    right: -60px;
+    background: linear-gradient(135deg, rgba(232, 106, 87, 0.1), rgba(232, 106, 87, 0.2));
+  }
+  
+  .mypost-circle.circle-2 {
+    width: 100px;
+    height: 100px;
+    bottom: -30px;
+    left: -30px;
+    background: linear-gradient(135deg, rgba(255, 180, 0, 0.1), rgba(255, 180, 0, 0.2));
+  }
+  
+  .pattern-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e86a57' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+  
+  /* Main content */
+  .mypost-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+  
+  .mypost-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #E86A57, #FFB400);
+    color: #FFF8F0;
+    font-size: 24px;
+    box-shadow: 0 8px 20px rgba(232, 106, 87, 0.3);
+    transition: transform 0.3s ease;
+  }
+  
+  .mypost-container:hover .mypost-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+  
+  .mypost-text {
+    flex: 1;
+  }
+  
+  .mypost-text h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 8px 0;
+    position: relative;
+  }
+  
+  .mypost-text h3::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(to right, #E86A57, #FFB400);
+    border-radius: 2px;
+  }
+  
+  .mypost-text p {
+    font-size: 1rem;
+    color: #555;
+    margin: 15px 0 0 0;
+  }
+  
+  /* Floating elements */
+  .floating-element {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #FFF;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    animation: float 6s infinite ease-in-out;
+    color: #E86A57;
+    font-size: 16px;
+  }
+  
+  .floating-element-1 {
+    top: 15px;
+    right: 80px;
+  }
+  
+  .floating-element-2 {
+    bottom: 15px;
+    right: 30px;
+    animation-delay: 1.5s;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .mypost-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 15px;
+    }
+    
+    .mypost-text h3::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .floating-element-1 {
+      top: 10px;
+      right: 10px;
+    }
+    
+    .floating-element-2 {
+      bottom: 10px;
+      right: 10px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .mypost-container {
+      padding: 20px;
+    }
+    
+    .mypost-icon {
+      width: 50px;
+      height: 50px;
+      font-size: 20px;
+    }
+    
+    .mypost-text h3 {
+      font-size: 1.2rem;
+    }
+    
+    .mypost-text p {
+      font-size: 0.9rem;
+    }
+  }
+
+
+
+/*
 .post-description {
     color: #e67e22;
     font-weight: 600;
@@ -14,5 +219,5 @@
     padding: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     margin-bottom: 20px;
-  }
+  }*/
 
