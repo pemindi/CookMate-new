@@ -1,17 +1,16 @@
 package com.example.pafbackend.models;
 
-import lombok.*;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
-//import org.springframework.data.mongodb.core.index.Indexed;
+
 @Document(collection = "users")
 @Data
-@Setter
-@Getter
 public class User implements UserDetails {
 
     @Id
@@ -22,27 +21,28 @@ public class User implements UserDetails {
     private String password;
 
     @Override
-    public List getAuthorities() {
-        return Collections.EMPTY_LIST;
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // If you plan to add roles, return them here
+        return Collections.emptyList(); // type-safe empty list
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return true; // customize if needed
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return true; // customize if needed
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return true; // customize if needed
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return true; // customize if needed
     }
 }
