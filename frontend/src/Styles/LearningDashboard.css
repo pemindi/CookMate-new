@@ -1,0 +1,660 @@
+
+/* LearningDashboard.css */
+.learning-dashboard {
+  padding: 30px;
+  font-family: 'Nunito', 'Poppins', sans-serif;
+  background-color: #FFF8F0;
+  min-height: 100vh;
+  position: relative;
+}
+
+.learning-dashboard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e86a57' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Dashboard header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-title {
+  position: relative;
+}
+
+.dashboard-title h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #333;
+  margin: 0;
+  position: relative;
+}
+
+.header-accent {
+  width: 70px;
+  height: 4px;
+  background: linear-gradient(to right, #E86A57, #FFB400);
+  border-radius: 2px;
+  margin-top: 8px;
+}
+
+.add-learning-button {
+  background: linear-gradient(135deg, #E86A57, #FFB400);
+  border: none;
+  color: white;
+  font-weight: 600;
+  height: 42px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(232, 106, 87, 0.3);
+  transition: all 0.3s ease;
+}
+
+.add-learning-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(232, 106, 87, 0.4);
+  color: white !important;
+  background: linear-gradient(135deg, #d35e4d, #e6a200);
+}
+
+/* Stats section */
+.stats-section {
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.stat-card {
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border: none;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card .ant-statistic-title {
+  color: #555;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+}
+
+.stat-card .ant-statistic-content {
+  color: #333;
+  font-weight: 700;
+}
+
+.stat-card.total {
+  background-color: #f9f0e3;
+}
+
+.stat-card.total .ant-statistic-content {
+  color: #333;
+}
+
+.stat-card.completed {
+  background-color: #e8f5e9;
+}
+
+.stat-card.completed .ant-statistic-content {
+  color: #2e7d32;
+}
+
+.stat-card.in-progress {
+  background-color: #e3f2fd;
+}
+
+.stat-card.in-progress .ant-statistic-content {
+  color: #1565c0;
+}
+
+.stat-card.on-hold {
+  background-color: #fff8e1;
+}
+
+.stat-card.on-hold .ant-statistic-content {
+  color: #f57c00;
+}
+
+.stat-card.planned {
+  background-color: #f5f5f5;
+}
+
+.stat-card.planned .ant-statistic-content {
+  color: #616161;
+}
+
+.stat-card.recent {
+  background-color: #f3e5f5;
+}
+
+.stat-card.recent .ant-statistic-content {
+  color: #6a1b9a;
+}
+
+/* Tabs styling */
+.learning-tabs .ant-tabs-tab {
+  padding: 12px 20px;
+  margin: 0 8px 0 0;
+  transition: all 0.3s ease;
+  border-radius: 12px 12px 0 0;
+}
+
+.learning-tabs .ant-tabs-tab:hover {
+  color: #E86A57;
+}
+
+.learning-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #E86A57;
+  font-weight: 600;
+}
+
+.learning-tabs .ant-tabs-ink-bar {
+  background: linear-gradient(to right, #E86A57, #FFB400);
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+}
+
+/* Learning grid */
+.learning-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 20px; width: 100%;
+  overflow-x: visible;
+}
+
+/* Learning cards */
+.learning-card {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  background-color: white;
+  position: relative;
+}
+
+.learning-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, #E86A57, #FFB400);
+  z-index: 1;
+}
+
+/* Completion of the learning card styling */
+.learning-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.learning-card-title {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.template-icon-wrapper {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.template-icon {
+  font-size: 20px;
+}
+
+.template-icon.general {
+  color: #607d8b;
+}
+
+.template-icon.project {
+  color: #1565c0;
+}
+
+.template-icon.certification {
+  color: #6a1b9a;
+}
+
+.template-icon.challenge {
+  color: #e65100;
+}
+
+.template-icon.workshop {
+  color: #2e7d32;
+}
+
+.card-content {
+  padding: 0;
+}
+
+.template-tag {
+  color: #666;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.description {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 12px;
+}
+
+.timestamp {
+  color: #888;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+}
+
+.timestamp-icon {
+  margin-right: 5px;
+}
+
+.details-button {
+  color: #E86A57;
+  font-weight: 600;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
+.details-button:hover {
+  color: #d35e4d;
+  text-decoration: underline;
+}
+
+/* Status tags */
+.status-tag {
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  border: none;
+}
+
+.status-tag.completed {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.status-tag.in-progress {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.status-tag.on-hold {
+  background-color: #fff8e1;
+  color: #f57c00;
+}
+
+.status-tag.planned {
+  background-color: #f5f5f5;
+  color: #616161;
+}
+
+.status-tag .anticon {
+  margin-right: 5px;
+  font-size: 12px;
+}
+
+/* Template-specific card styling */
+.learning-card.template-project::before {
+  background: linear-gradient(to right, #1565c0, #42a5f5);
+}
+
+.learning-card.template-certification::before {
+  background: linear-gradient(to right, #6a1b9a, #ba68c8);
+}
+
+.learning-card.template-challenge::before {
+  background: linear-gradient(to right, #e65100, #ff9800);
+}
+
+.learning-card.template-workshop::before {
+  background: linear-gradient(to right, #2e7d32, #66bb6a);
+}
+
+.learning-card.template-general::before {
+  background: linear-gradient(to right, #607d8b, #90a4ae);
+}
+
+/* Empty state styling */
+.empty-state {
+  width: 100%;
+  margin: 40px 0;
+}
+
+.ant-empty-description {
+  color: #999;
+  font-size: 1rem;
+}
+
+/* Loading container */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+/* Modal Styles */
+.ant-modal-content {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.ant-modal-header {
+  background: linear-gradient(to right, #E86A57, #FFB400);
+  padding: 16px 24px;
+  border-bottom: none;
+}
+
+.ant-modal-title {
+  color: white;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.ant-modal-close-x {
+  color: white;
+}
+
+.ant-modal-body {
+  padding: 24px;
+}
+
+.ant-modal-footer {
+  border-top: none;
+  padding: 10px 24px 20px;
+}
+
+.ant-form-item-label > label {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Learning details styles */
+.learning-details-section {
+  margin-bottom: 20px;
+}
+
+.details-section-title {
+  color: #333;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.details-section-title .anticon {
+  margin-right: 8px;
+  color: #E86A57;
+}
+
+.detail-item {
+  margin-bottom: 16px;
+}
+
+.detail-label {
+  color: #777;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.detail-value {
+  color: #333;
+  font-weight: 500;
+}
+
+.resources-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.resources-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.resources-list li:last-child {
+  border-bottom: none;
+}
+
+.resource-link {
+  color: #1890ff;
+  margin-left: 5px;
+}
+
+.action-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.delete-button {
+  background-color: #f5f5f5;
+  color: #ff4d4f;
+  border: none;
+}
+
+.delete-button:hover {
+  background-color: #fff1f0;
+  color: #ff4d4f;
+}
+
+.edit-button {
+  background-color: #E86A57;
+  border: none;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #d35e4d;
+  color: white;
+}
+
+/* MyLearning component styles */
+.my-learning-section {
+  margin-bottom: 30px;
+}
+
+.my-learning-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.my-learning-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.my-learning-subtitle {
+  color: #777;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+.carousel-container {
+  position: relative;
+}
+
+.carousel-nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.carousel-nav-button:hover {
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-nav-button.prev {
+  left: -15px;
+}
+
+.carousel-nav-button.next {
+  right: -15px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 992px) {
+  .stats-section .ant-col {
+    margin-bottom: 16px;
+  }
+  
+  .learning-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .add-learning-button {
+    margin-top: 20px;
+    width: 100%;
+  }
+  
+  .stats-section .ant-col {
+    width: 50%;
+  }
+  
+  .learning-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .learning-tabs .ant-tabs-tab {
+    padding: 10px 12px;
+    margin: 0 4px 0 0;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .learning-dashboard {
+    padding: 20px 15px;
+  }
+  
+  .dashboard-title h2 {
+    font-size: 1.8rem;
+  }
+  
+  .stats-section .ant-col {
+    width: 100%;
+  }
+}
+/* Add these styles to your existing LearningDashboard.css file */
+/* Ensure tabs are scrollable */
+.tabs-scrollable-container {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 8px; /* Add padding to prevent cut-off of scrollbar */
+  margin-bottom: 15px;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}
+
+/* Customize scrollbar appearance */
+.tabs-scrollable-container::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tabs-scrollable-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+ 
+.tabs-scrollable-container::-webkit-scrollbar-thumb {
+  background: #E86A57;
+  border-radius: 10px;
+  opacity: 0.7;
+}
+
+.tabs-scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: #d35e4d;
+}
+
+/* Ensure tabs don't wrap and provide proper scrolling */
+.learning-tabs .ant-tabs-nav-list {
+  width: max-content; /* This is crucial - ensures the tabs retain their natural width */
+}
+
+/* Make sure tab panes have proper spacing */
+.learning-tabs .ant-tabs-tabpane {
+  padding-top: 10px;
+}
+
+/* Add focus styles for accessibility */
+.learning-tabs .ant-tabs-tab:focus-visible {
+  outline: 2px solid #E86A57;
+  outline-offset: 2px;
+}
+
+/* Make sure tabs content has proper spacing */
+.learning-tabs .ant-tabs-content-holder {
+  overflow: visible;
+  padding: 0;
+}
+

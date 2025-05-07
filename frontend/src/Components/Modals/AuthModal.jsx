@@ -12,11 +12,15 @@ import {
 import {
   InboxOutlined,
   GoogleOutlined,
-  GithubOutlined, 
+  GithubOutlined,
+  UserOutlined,
+  LockOutlined,
+  MailOutlined,
 } from "@ant-design/icons";
 import UploadFileService from "../../Services/UploadFileService";
 import AuthService from "../../Services/AuthService";
 import UserService from "../../Services/UserService";
+import "../../Styles/AuthModal.css";
 
 const uploader = new UploadFileService();
 
@@ -27,6 +31,7 @@ const AuthModal = ({ isOpen, onClose, onSuccess }) => {
 
   const toggleFocus = () => {
     setSigninFocused(!signinFocused);
+    form.resetFields();
   };
 
   const handleFormSubmit = async (values) => {
@@ -95,133 +100,186 @@ const AuthModal = ({ isOpen, onClose, onSuccess }) => {
   };
 
   return (
-    <Modal title="Sign In or Sign Up" open={isOpen} footer={null} onCancel={onClose}>
-      <div className="oauth-buttons" style={{ marginBottom: "20px" }}>
-        <Space direction="vertical" style={{ width: "100%" }}>
+    <Modal 
+      open={isOpen} 
+      footer={null} 
+      onCancel={onClose}
+      width={520}
+      className="auth-modal"
+      title={null}
+    >
+      <div className="modal-background">
+        <div className="circle circle-1"></div>
+        <div className="circle circle-2"></div>
+        <div className="pattern-overlay"></div>
+      </div>
+      
+      <div className="modal-content">
+        <div className="modal-header">
+          <span className="badge">{signinFocused ? "Welcome Back" : "Join Us"}</span>
+          <h2>{signinFocused ? "Sign In" : "Sign Up"}</h2>
+        </div>
+        
+        <div className="oauth-section">
           <Button
+            className="oauth-button google-button"
             icon={<GoogleOutlined />}
             onClick={() => handleOAuthLogin("google")}
-            block
-            style={{ backgroundColor: "#4285F4", color: "white" }}
           >
             Continue with Google
           </Button>
+          
           <Button
+            className="oauth-button github-button"
             icon={<GithubOutlined />}
             onClick={() => handleOAuthLogin("github")}
-            block
           >
             Continue with GitHub
           </Button>
-        </Space>
-      </div>
+          
+          <div className="divider-container">
+            <Divider className="custom-divider">OR</Divider>
+          </div>
+        </div>
 
-      <Divider>OR</Divider>
-
-      <Form
-        name="authForm"
-        form={form}
-        initialValues={{ remember: true }}
-        onFinish={handleFormSubmit}
-        autoComplete="off"
-      >
-        <Form.Item
-          name="username"
-          label="Username"
-          rules={[{ required: true, message: "Please input your Username!" }]}
+        <Form
+          name="authForm"
+          form={form}
+          initialValues={{ remember: true }}
+          onFinish={handleFormSubmit}
+          autoComplete="off"
+          className="auth-form"
+          layout="vertical"
         >
-          <Input placeholder="Username" />
-        </Form.Item>
+          <Form.Item
+            name="username"
+            rules={[{ required: true, message: "Please input your Username!" }]}
+          >
+            <Input 
+              prefix={<UserOutlined />} 
+              placeholder="Username" 
+              className="auth-input"
+            />
+          </Form.Item>
 
-        <Form.Item
-          name="password"
-          label="Password"
-          rules={[{ required: true, message: "Please input your Password!" }]}
-        >
-          <Input.Password placeholder="Password" />
-        </Form.Item>
+          <Form.Item
+            name="password"
+            rules={[{ required: true, message: "Please input your Password!" }]}
+          >
+            <Input.Password 
+              prefix={<LockOutlined />} 
+              placeholder="Password" 
+              className="auth-input"
+            />
+          </Form.Item>
 
-        {!signinFocused && (
-          <>
-            <Form.Item shouldUpdate={(prev, curr) => prev.password !== curr.password}>
-              {({ getFieldValue }) => {
-                const password = getFieldValue("password") || "";
-                const rules = [
-                  { label: "At least 8 characters", valid: password.length >= 8 },
-                  { label: "At least 1 uppercase letter", valid: /[A-Z]/.test(password) },
-                  { label: "At least 1 lowercase letter", valid: /[a-z]/.test(password) },
-                  { label: "At least 1 number", valid: /\d/.test(password) },
-                  { label: "At least 1 special character", valid: /[!@#$%^&*]/.test(password) },
-                ];
+          {!signinFocused && (
+            <>
+              <Form.Item shouldUpdate={(prev, curr) => prev.password !== curr.password}>
+                {({ getFieldValue }) => {
+                  const password = getFieldValue("password") || "";
+                  const rules = [
+                    { label: "At least 8 characters", valid: password.length >= 8 },
+                    { label: "At least 1 uppercase letter", valid: /[A-Z]/.test(password) },
+                    { label: "At least 1 lowercase letter", valid: /[a-z]/.test(password) },
+                    { label: "At least 1 number", valid: /\d/.test(password) },
+                    { label: "At least 1 special character", valid: /[!@#$%^&*]/.test(password) },
+                  ];
 
-                return (
-                  <ul style={{ listStyle: "none", paddingLeft: 0, marginBottom: 16 }}>
-                    {rules.map((rule, idx) => (
-                      <li key={idx} style={{ color: rule.valid ? "green" : "gray" }}>
-                        {rule.label}
-                      </li>
-                    ))}
-                  </ul>
-                );
-              }}
-            </Form.Item>
+                  return (
+                    <ul className="password-rules">
+                      {rules.map((rule, idx) => (
+                        <li key={idx} className={rule.valid ? "valid" : ""}>
+                          {rule.label}
+                        </li>
+                      ))}
+                    </ul>
+                  );
+                }}
+              </Form.Item>
 
-            <Form.Item
-              name="confirm"
-              dependencies={["password"]}
-              hasFeedback
-              label="Confirm Password"
-              rules={[
-                {
-                  required: true,
-                  message: "Please confirm your password!",
-                },
-                ({ getFieldValue }) => ({
-                  validator(_, value) {
-                    if (!value || getFieldValue("password") === value) {
-                      return Promise.resolve();
-                    }
-                    return Promise.reject(
-                      new Error("The two passwords that you entered do not match!")
-                    );
+              <Form.Item
+                name="confirm"
+                dependencies={["password"]}
+                hasFeedback
+                rules={[
+                  {
+                    required: true,
+                    message: "Please confirm your password!",
                   },
-                }),
-              ]}
-            >
-              <Input.Password placeholder="Confirm Password" />
-            </Form.Item>
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue("password") === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        new Error("The two passwords don't match!")
+                      );
+                    },
+                  }),
+                ]}
+              >
+                <Input.Password 
+                  prefix={<LockOutlined />} 
+                  placeholder="Confirm Password" 
+                  className="auth-input"
+                />
+              </Form.Item>
+              
+              <Form.Item
+                name="email"
+                rules={[
+                  { type: 'email', message: 'Please enter a valid email' },
+                  { required: true, message: 'Please input your email' }
+                ]}
+              >
+                <Input 
+                  prefix={<MailOutlined />} 
+                  placeholder="Email" 
+                  className="auth-input"
+                />
+              </Form.Item>
 
-            <Form.Item
-              name="file"
-              valuePropName="fileList"
-              getValueFromEvent={normFile}
-              extra="Optional: Upload an image for your profile"
-            >
-              <Upload.Dragger beforeUpload={() => false} multiple={false}>
-                <p className="ant-upload-drag-icon">
-                  <InboxOutlined />
-                </p>
-                <p className="ant-upload-text">
-                  Click or drag file to this area to upload
-                </p>
-              </Upload.Dragger>
-            </Form.Item>
-          </>
-        )}
+              <Form.Item
+                name="file"
+                valuePropName="fileList"
+                getValueFromEvent={normFile}
+              >
+                <Upload.Dragger 
+                  beforeUpload={() => false} 
+                  multiple={false}
+                  className="upload-dragger"
+                >
+                  <p className="ant-upload-drag-icon">
+                    <InboxOutlined />
+                  </p>
+                  <p className="upload-text">
+                    Upload profile picture (optional)
+                  </p>
+                </Upload.Dragger>
+              </Form.Item>
+            </>
+          )}
 
-        <Form.Item>
-          <Button loading={isLoading} type="primary" htmlType="submit" block>
-            {signinFocused ? "Sign In" : "Sign Up"}
-          </Button>
-        </Form.Item>
-        <Form.Item>
-          <Button type="link" onClick={toggleFocus} block>
-            {signinFocused
-              ? "Need an account? Sign up"
-              : "Already have an account? Sign in"}
-          </Button>
-        </Form.Item>
-      </Form>
+          <Form.Item>
+            <Button 
+              loading={isLoading} 
+              htmlType="submit" 
+              block
+              className="auth-submit-button"
+            >
+              {signinFocused ? "Sign In" : "Sign Up"}
+            </Button>
+          </Form.Item>
+          
+          <div className="toggle-auth-mode">
+            <span>{signinFocused ? "Need an account?" : "Already have an account?"}</span>
+            <Button type="link" onClick={toggleFocus} className="toggle-button">
+              {signinFocused ? "Sign Up" : "Sign In"}
+            </Button>
+          </div>
+        </Form>
+      </div>
     </Modal>
   );
 };
