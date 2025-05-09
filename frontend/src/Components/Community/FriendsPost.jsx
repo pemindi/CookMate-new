@@ -306,7 +306,7 @@ useEffect(() => {
       <Divider style={{ margin: "12px 0" }} />
 
       <div className="comment-input">
-        <Avatar src={snap.currentUser?.image} size={36} />
+        <Avatar src={snap.currentUser?.image} size={35} />
         <Input
           placeholder="Write a comment..."
           value={comment}
