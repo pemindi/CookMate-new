@@ -267,7 +267,7 @@ useEffect(() => {
 
       <div className="post-stats">
         <div className="likes-count">
-          <Badge count={likes.length} showZero color="#1890ff" offset={[10, 0]}>
+          <Badge count={likes.length} showZero color="#2d99fc" offset={[10, 0]}>
             <LikeOutlined style={{ fontSize: '16px' }} />
           </Badge>
         </div>
