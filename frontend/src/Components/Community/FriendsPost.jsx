@@ -275,7 +275,7 @@ useEffect(() => {
           className="comments-count cursor-pointer" 
           onClick={() => setShowCommentModal(true)}
         >
-          <Badge count={comments.length} showZero color="#52c41a" offset={[10, 0]}>
+          <Badge count={comments.length} showZero color="#338a08" offset={[10, 0]}>
             <CommentOutlined style={{ fontSize: '16px' }} />
           </Badge>
         </div>
