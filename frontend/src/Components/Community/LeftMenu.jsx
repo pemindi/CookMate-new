@@ -1,21 +1,25 @@
 import React from "react";
 import { useSnapshot } from "valtio";
+import { UtensilsCrossed } from "lucide-react";
+import { Link } from "react-router-dom";
 import state from "../../Utils/Store";
 
 const LeftMenu = () => {
   const snap = useSnapshot(state);
-
+  
   const handleClick = (index) => {
     state.activeIndex = index;
   };
-
+  
   return (
     <div className="left-menu">
       <div className="left-menu-header">
-        <img 
-          src=" ./assets/icon.png"  alt="MediConnect Logo" 
-        />
-        <h3 className="left-menu-title">Cooking Mastery </h3>
+        <div className="nav__logo">
+          <Link to="/">
+            <UtensilsCrossed className="logo__icon" size={36} />
+            <h1 className="logo__text">Cook<span>Mate</span></h1>
+          </Link>
+        </div>
       </div>
       <ul className="left-menu-list">
         {[

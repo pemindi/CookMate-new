@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import AuthModal from "../Modals/AuthModal";
 import AuthService from "../../Services/AuthService";
+import { ChefHat, Utensils, Book, ArrowRight } from "lucide-react";
+import "../../Styles/Header.css";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -46,26 +48,78 @@ const Header = () => {
   };
 
   return (
-    <header className={`header ${isLoggedIn ? 'header--logged-in' : ''}`}>
-      {/* Added cooking-themed animations */}
-      <div className="spice-particle"></div>
-      <div className="spice-particle"></div>
+    <header className="header">
+      <div className="header__background">
+        <div className="circle circle-1"></div>
+        <div className="circle circle-2"></div>
+        <div className="pattern-overlay"></div>
+      </div>
       
-      <Navbar />
-      <div className="section__container">
-        <div className="header__container">
-          <div className="header__content">
-            <h1>FLAVOR YOUR WORLD</h1>
-            <h2>TASTE. PASSION. CREATIVITY.</h2>
-            <p>
-              Join our community of chefs and food enthusiasts.
-              Discover delicious recipes, connect with culinary experts,
-              and take control of your cooking journey.
-            </p>
-            <div className="header__btn">
-              <button className="btn btn__primary" onClick={authButtonClicked}>
-                {isLoggedIn ? "Access My Kitchen" : "START COOKING NOW"}
+      <div className="header__container">
+        <div className="header__left">
+         
+          <h1>Discover Your Cooking Passion</h1>
+          <p>
+            Join a vibrant community of food enthusiasts who share recipes, techniques, 
+            and the joy of creating memorable dishes from around the world.
+          </p>
+          
+          <div className="cta-buttons">
+            <button className="cta-primary" onClick={authButtonClicked}>
+              {isLoggedIn ? "My Kitchen Space" : "Start Your Journey"}
+              <ArrowRight size={18} />
+            </button>
+            
+            {!isLoggedIn && (
+              <button className="cta-secondary">
+                Browse Recipes
               </button>
+            )}
+          </div>
+          
+          <div className="feature-cards">
+            <div className="feature-card">
+              <div className="feature-icon">
+                <Book size={24} />
+              </div>
+              <div className="feature-text">
+                <h3>2,500+</h3>
+                <p>Unique Recipes</p>
+              </div>
+            </div>
+            
+            <div className="feature-card">
+              <div className="feature-icon">
+                <ChefHat size={24} />
+              </div>
+              <div className="feature-text">
+                <h3>500+</h3>
+                <p>Expert Chefs</p>
+              </div>
+            </div>
+            
+            <div className="feature-card">
+              <div className="feature-icon">
+                <Utensils size={24} />
+              </div>
+              <div className="feature-text">
+                <h3>10,000+</h3>
+                <p>Community Members</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="header__right">
+          <div className="image-collage">
+            <div className="collage-item collage-item-1"></div>
+            <div className="collage-item collage-item-2"></div>
+            <div className="collage-item collage-item-3"></div>
+            <div className="floating-element floating-element-1">
+              <ChefHat size={30} color="#E86A57" />
+            </div>
+            <div className="floating-element floating-element-2">
+              <Utensils size={30} color="#FFB400" />
             </div>
           </div>
         </div>

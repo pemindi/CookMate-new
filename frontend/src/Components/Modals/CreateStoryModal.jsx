@@ -36,6 +36,217 @@ const CreateStoryModal = () => {
       
       await StoryService.createStory(body);
       state.storyCards = await StoryService.getAllStories();
+      message.success("Story created successfully");
+      form.resetFields();
+      setImage(null);
+      state.createStatusModalOpened = false;
+    } catch (error) {
+      if (error.errorFields) {
+        // Form validation errors handled by Ant Design
+        return;
+      }
+      message.error("Error creating story");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleFileChange = async (info) => {
+    if (info.file) {
+      setImageUploading(true);
+      try {
+        const url = await uploader.uploadFile(
+          info.fileList[0].originFileObj,
+          "Stories"
+        );
+        setImage(url);
+        message.success("Image uploaded successfully");
+      } catch (error) {
+        message.error("Failed to upload image");
+      } finally {
+        setImageUploading(false);
+      }
+    }
+  };
+
+  const handleCancel = () => {
+    form.resetFields();
+    setImage(null);
+    state.createStatusModalOpened = false;
+  };
+
+  return (
+    <Modal
+      className="create-post-modal"
+      open={snap.createStatusModalOpened}
+      onCancel={handleCancel}
+      footer={[
+        <Button key="cancel" onClick={handleCancel}>
+          Cancel
+        </Button>,
+        <Button
+          loading={loading}
+          key="create"
+          type="primary"
+          onClick={handleCreateStory}
+          disabled={imageUploading}
+          className="submit-button"
+        >
+          Create
+        </Button>,
+      ]}
+      bodyStyle={{ padding: "20px" }}
+      width={500}
+    >
+      <div className="modal-background">
+        <div className="modal-circle circle-1"></div>
+        <div className="modal-circle circle-2"></div>
+        <div className="pattern-overlay"></div>
+      </div>
+      
+      <div className="modal-title">
+        <h2 className="modal-title-text">Create Story</h2>
+        <div className="modal-title-decoration"></div>
+      </div>
+      
+      <Form 
+        className="create-post-form"
+        form={form} 
+        layout="vertical"
+      >
+        <Form.Item 
+          name="title" 
+          label={<span className="form-label">Title</span>}
+          rules={[{ required: true, message: 'Please enter a title' }]}
+        >
+          <Input 
+            placeholder="Enter a title for the story" 
+            className="content-textarea"
+          />
+        </Form.Item>
+        
+        <Form.Item
+          name="description"
+          label={<span className="form-label">Description</span>}
+          rules={[{ required: true, message: 'Please enter a description' }]}
+        >
+          <Input.TextArea 
+            placeholder="Enter a description for your story" 
+            rows={4}
+            className="content-textarea"
+          />
+        </Form.Item>
+        
+        <Form.Item 
+          name="timestamp" 
+          label={<span className="form-label">Date</span>}
+        >
+          <DatePicker 
+            style={{ width: "100%" }} 
+            className="content-textarea"
+          />
+        </Form.Item>
+        
+        <Form.Item 
+          label={<span className="form-label">Image</span>} 
+          required
+        >
+          <div className="image-upload-area">
+            {imageUploading ? (
+              <div className="uploading-indicator">
+                <div className="uploading-spinner"></div>
+                <p>Please wait, image is uploading...</p>
+              </div>
+            ) : image ? (
+              <div className="media-preview">
+                <div className="media-type-icon">
+                  <PictureOutlined />
+                </div>
+                <img 
+                  src={image} 
+                  alt="Preview" 
+                  className="preview-image" 
+                />
+                <Upload
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  showUploadList={false}
+                  beforeUpload={() => false}
+                >
+                  <Button 
+                    icon={<UploadOutlined />} 
+                    className="upload-button"
+                    style={{ marginTop: "10px" }}
+                  >
+                    Change Image
+                  </Button>
+                </Upload>
+              </div>
+            ) : (
+              <Upload
+                accept="image/*"
+                onChange={handleFileChange}
+                showUploadList={false}
+                beforeUpload={() => false}
+                className="media-upload"
+              >
+                <div className="upload-placeholder">
+                  <PictureOutlined style={{ fontSize: "32px", opacity: 0.5 }} />
+                  <p>Click here to upload an image</p>
+                </div>
+              </Upload>
+            )}
+          </div>
+        </Form.Item>
+      </Form>
+    </Modal>
+  );
+};
+
+export default CreateStoryModal;
+
+
+
+
+
+/*import React, { useState } from "react";
+import { Modal, Upload, Input, Button, DatePicker, message, Form, Spin } from "antd";
+import { UploadOutlined, PictureOutlined } from "@ant-design/icons";
+import { useSnapshot } from "valtio";
+import state from "../../Utils/Store";
+import UploadFileService from "../../Services/UploadFileService";
+import StoryService from "../../Services/StoryService";
+
+const uploader = new UploadFileService();
+
+const CreateStoryModal = () => {
+  const snap = useSnapshot(state);
+  const [imageUploading, setImageUploading] = useState(false);
+  const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [form] = Form.useForm();
+
+  const handleCreateStory = async () => {
+    try {
+      await form.validateFields();
+      const values = form.getFieldsValue();
+      
+      if (!image) {
+        message.error("Please upload an image");
+        return;
+      }
+      
+      setLoading(true);
+      const body = {
+        title: values.title,
+        description: values.description,
+        timestamp: values.timestamp ? values.timestamp.toISOString() : new Date().toISOString(),
+        image,
+        userId: snap.currentUser?.id,
+      };
+      
+      await StoryService.createStory(body);
+      state.storyCards = await StoryService.getAllStories();
       message.success(" story created successfully");
       form.resetFields();
       setImage(null);
@@ -103,7 +314,7 @@ const CreateStoryModal = () => {
           label="Title" 
           rules={[{ required: true, message: 'Please enter a title' }]}
         >
-          <Input placeholder="Enter story title" />
+          <Input placeholder="Enter a title for the story" />
         </Form.Item>
         
         <Form.Item
@@ -112,7 +323,7 @@ const CreateStoryModal = () => {
           rules={[{ required: true, message: 'Please enter a description' }]}
         >
           <Input.TextArea 
-            placeholder="Describe your  story" 
+            placeholder="Enter a description for your story" 
             rows={4}
           />
         </Form.Item>
@@ -150,7 +361,7 @@ const CreateStoryModal = () => {
               >
                 <div className="upload-placeholder">
                   <PictureOutlined style={{ fontSize: "32px", opacity: 0.5 }} />
-                  <p>Click to upload an image</p>
+                  <p>Click here to upload an image</p>
                 </div>
               </Upload>
             )}
@@ -161,4 +372,4 @@ const CreateStoryModal = () => {
   );
 };
 
-export default CreateStoryModal;
+export default CreateStoryModal;*/

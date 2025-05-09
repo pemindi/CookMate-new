@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Switch, Input, Button, Upload, message, Form } from "antd";
-import { UploadOutlined, LoadingOutlined } from "@ant-design/icons";
+import { UploadOutlined, LoadingOutlined, UserOutlined, LockOutlined, LogoutOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useSnapshot } from "valtio";
 import state from "../../Utils/Store";
 import UploadFileService from "../../Services/UploadFileService";
 import UserService from "../../Services/UserService";
 import { useNavigate } from "react-router-dom";
+import "../../Styles/UserProfileModal.css";
 
 const uploader = new UploadFileService();
 const { Item } = Form;
@@ -113,88 +114,136 @@ const UserProfileModal = () => {
     );
   };
   
-
   return (
     <Modal
       open={snap.profileModalOpend}
       onCancel={() => {
         state.profileModalOpend = false;
       }}
-      footer={[
-        <Button key="cancel" onClick={() => (state.profileModalOpend = false)}>
-          Cancel
-        </Button>,
-        <Button
-          loading={updateLoading}
-          key="update"
-          type="primary"
-          onClick={handleUpdateProfile}
-          disabled={uploadUserLoading || (!hasFormChanged() && !imageChanged)}
-        >
-          Update
-        </Button>,
-        <Button
-          loading={deleteLoading}
-          key="delete"
-          danger
-          type="dashed"
-          onClick={handleDeleteProfile}
-          disabled={uploadUserLoading || updateLoading}
-        >
-          Delete Profile
-        </Button>,
-        <Button
-          key="logout"
-          danger
-          type="dashed"
-          onClick={() => {
-            localStorage.clear();
-            navigate("/");
-          }}
-          disabled={uploadUserLoading || updateLoading || deleteLoading}
-        >
-          Logout
-        </Button>,
-      ]}
+      width={700}
+      className="profile-modal"
+      footer={null}
     >
-      <h2>User Profile</h2>
-      <Form form={form} initialValues={snap.currentUser}>
-        <Item name="username" label="Username">
-          <Input disabled />
-        </Item>
-
-        {/* Removed Biography and Fitness Goals fields */}
+      <div className="modal-background">
+        <div className="circle circle-1"></div>
+        <div className="circle circle-2"></div>
+        <div className="pattern-overlay"></div>
+      </div>
+      
+      <div className="modal-content">
+        <div className="modal-header">
+          <span className="badge">Your Profile</span>
+          <h2>User Profile</h2>
+        </div>
         
-        <Item name="image" label="Profile Picture">
-          <Upload
-            accept="image/*"
-            onChange={handleFileChange}
-            showUploadList={false}
-            beforeUpload={() => false}
-            disabled={uploadUserLoading}
-          >
-            <Button icon={uploadUserLoading ? <LoadingOutlined /> : <UploadOutlined />} disabled={uploadUserLoading}>
-              {uploadUserLoading ? "Uploading..." : "Upload Image"}
-            </Button>
-          </Upload>
-          {form.getFieldValue("image") && (
-            <div style={{ marginTop: 10 }}>
-              <img
-                src={form.getFieldValue("image")}
-                alt="Profile"
-                style={{ maxWidth: "100%", maxHeight: "200px" }}
-              />
-            </div>
-          )}
-        </Item>
-        <Item
-          name="profileVisibility"
-          label="Profile Visibility"
-          valuePropName="checked"
-        >
-          <Switch disabled={uploadUserLoading} />
-        </Item>
-      </Form>
+        <div className="profile-container">
+          <div className="profile-image-section">
+            {form.getFieldValue("image") ? (
+              <div className="profile-image-wrapper">
+                <img
+                  src={form.getFieldValue("image")}
+                  alt="Profile"
+                  className="profile-image"
+                />
+              </div>
+            ) : (
+              <div className="profile-image-placeholder">
+                <UserOutlined />
+              </div>
+            )}
+            
+            <Form form={form} initialValues={snap.currentUser} className="upload-form">
+              <Item name="image" className="upload-item">
+                <Upload
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  showUploadList={false}
+                  beforeUpload={() => false}
+                  disabled={uploadUserLoading}
+                >
+                  <Button 
+                    className="cta-secondary upload-btn"
+                    icon={uploadUserLoading ? <LoadingOutlined /> : <UploadOutlined />} 
+                    disabled={uploadUserLoading}
+                  >
+                    {uploadUserLoading ? "Uploading..." : "Change Photo"}
+                  </Button>
+                </Upload>
+              </Item>
+            </Form>
+          </div>
+          
+          <div className="profile-form-section">
+            <Form form={form} initialValues={snap.currentUser} layout="vertical" className="profile-form">
+              <Item name="username" label="Username">
+                <Input 
+                  disabled 
+                  prefix={<UserOutlined />}
+                  className="profile-input"
+                />
+              </Item>
+              
+              <Item
+                name="profileVisibility"
+                label="Profile Visibility"
+                valuePropName="checked"
+                className="visibility-switch"
+              >
+                <div className="switch-wrapper">
+                  <Switch disabled={uploadUserLoading} />
+                  <span className="switch-label">
+                    {form.getFieldValue("profileVisibility") ? "Public" : "Private"}
+                  </span>
+                </div>
+              </Item>
+              
+              <div className="action-buttons">
+                <Button
+                  className="cta-primary update-btn"
+                  loading={updateLoading}
+                  onClick={handleUpdateProfile}
+                  disabled={uploadUserLoading || (!hasFormChanged() && !imageChanged)}
+                >
+                  Update Profile
+                </Button>
+                
+                <div className="secondary-actions">
+                  <Button
+                    icon={<DeleteOutlined />}
+                    loading={deleteLoading}
+                    danger
+                    className="action-btn delete-btn"
+                    onClick={handleDeleteProfile}
+                    disabled={uploadUserLoading || updateLoading}
+                  >
+                    Delete Account
+                  </Button>
+                  
+                  <Button
+                    icon={<LogoutOutlined />}
+                    danger
+                    className="action-btn logout-btn"
+                    onClick={() => {
+                      localStorage.clear();
+                      navigate("/");
+                    }}
+                    disabled={uploadUserLoading || updateLoading || deleteLoading}
+                  >
+                    Logout
+                  </Button>
+                </div>
+                
+                <Button 
+                  className="cancel-btn"
+                  onClick={() => (state.profileModalOpend = false)}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </Form>
+          </div>
+        </div>
+      </div>
     </Modal>
   );
 };
