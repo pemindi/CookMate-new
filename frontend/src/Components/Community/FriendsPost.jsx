@@ -308,7 +308,7 @@ useEffect(() => {
       <div className="comment-input">
         <Avatar src={snap.currentUser?.image} size={35} />
         <Input
-          placeholder="Write a comment..."
+          placeholder="Write your comment..."
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           onPressEnter={createComment}
