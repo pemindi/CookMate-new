@@ -128,7 +128,7 @@
   justify-content: center;
   background: linear-gradient(135deg, #E86A57, #FFB400);
   border: none;
-  color: rgb(172, 52, 52);
+  color: white;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 4px 10px rgba(232, 106, 87, 0.3);
