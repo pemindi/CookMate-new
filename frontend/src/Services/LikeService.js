@@ -32,7 +32,7 @@ class LikeService {
           const body = {
             userId: userId,
             message: "You have a new like",
-            description: "Your post liked by " + username,
+            description: "Your post is liked by " + username,
           };
 
           await NotificationService.createNotification(body);
