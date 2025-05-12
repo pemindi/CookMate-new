@@ -21,7 +21,7 @@ class CommentService {
           const body = {
             userId: userId,
             message: "You have a new comment",
-            description: "Your post commented by " + username,
+            description: "Your post is commented by " + username,
           };
 
           await NotificationService.createNotification(body);
