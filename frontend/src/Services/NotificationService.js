@@ -30,7 +30,7 @@ const NotificationService = {
       const response = await axios.post(API_URL, notificationData, config);
       return response.data;
     } catch (error) {
-      console.error("Error creating notification:", error);
+      console.error("Error creating the notification:", error);
       throw error;
     }
   },
