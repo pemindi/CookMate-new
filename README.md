@@ -1,6 +1,8 @@
 # 🍳 CookMate
 
-**CookMate** makes cooking and sharing easier than ever!  
+**CookMate** is a cooking skill-sharing platform built as our **Y3S2 Group Project** for the module **PAF (Programming Application Frameworks)** at SLIIT.
+
+It makes cooking and sharing easier than ever!  
 With CookMate, you can:
 
 - 📝 **Sign up** and create your own profile  
